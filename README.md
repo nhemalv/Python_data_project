@@ -154,4 +154,155 @@ plt.show()
 
 ### Resultados
 
-![Distribución de Salarios por puesto de Data](3_Project\images\distribucion de salario.png)
+![Distribución de Salarios por puesto de Data](3_Project/images/distribucion%20de%20salario.png)
+
+## Insights
+Los salarios crecen con la seniority
+
+Los puestos Senior (Data Scientist, Data Engineer, Data Analyst) tienen medianas de salario claramente más altas que sus contrapartes junior.
+
+Por ejemplo, Senior Data Scientist y Senior Data Engineer tienen medianas por encima de los $150K, mientras que Data Analyst ronda más cerca de los $80K–$90K.
+
+Los Data Scientists tienen un rango amplio
+
+Tanto los Data Scientist como los Senior Data Scientist muestran una distribución bastante extendida, con presencia de outliers que llegan hasta cerca de $600K.
+
+Esto indica que el mercado para estos roles es más variable y posiblemente más influenciado por industria, empresa o ubicación.
+
+Data Analysts son los menos remunerados
+
+El rol de Data Analyst (y también el Senior Data Analyst) tiene las medianas más bajas, con menor dispersión que los demás.
+
+Esto refleja que es una posición de entrada al mercado de datos y menos valorada en términos de salario.
+
+Los Data Engineers también son altamente valorados
+
+Data Engineers y Senior Data Engineers muestran salarios competitivos, incluso a la par o ligeramente superiores a los de Data Scientist.
+
+Esto resalta la importancia de la infraestructura y el manejo de datos en grandes organizaciones.
+
+Outliers significativos
+
+En todos los roles hay individuos que ganan mucho más que la media (outliers extremos de $400K–$600K), lo que podría corresponder a posiciones en grandes tecnológicas, roles especializados o compensaciones que incluyen bonos/stock options.
+
+## 3. Cuanto pagan ciertas habilidades?
+
+### Visualizado
+fig, ax = plt.subplots(2, 1)
+
+sns.set_theme(style='ticks')
+
+#df_DA_toppay.plot(kind='barh', y = 'median', ax=ax[0], legend=False)
+
+sns.barplot(data=df_DA_top_pay, x='median', y=df_DA_top_pay.index, ax=ax[0], hue='median', palette='dark:b_r')
+
+ax[0].set_ylabel('')
+ax[0].set_title('10 Highest Paid Skills for Data Analysts')
+ax[0].legend().remove()
+
+#df_DA_skills.plot(kind='barh', y = 'median', ax=ax[1], legend=False)
+
+sns.barplot(data=df_DA_skills, x='median', y=df_DA_skills.index, ax=ax[1], hue='median', palette='light:b')
+
+ax[1].set_xlim(ax[0].get_xlim())
+ax[1].set_ylabel('')
+ax[1].set_title('10 Most In-Demand Skills for Data Analysts')
+ax[1].legend().remove()
+
+plt.tight_layout()
+plt.show()
+
+### Resultado
+![Habilidades con salario mas alto](3_Project\images\salarioxhabilidad.png)
+
+### Insights
+Las herramientas más técnicas y de nicho son las mejor pagadas
+
+dplyr, bitbucket, gitlab, solidity, hugging face superan los $175K de salario mediano.
+
+Esto indica que manejar librerías/frameworks específicos, sobre todo relacionados con programación y machine learning, está muy bien valorado.
+
+Conocimientos en tecnologías emergentes marcan la diferencia
+
+Solidity (blockchain) y Hugging Face (NLP/IA) se encuentran en el top de skills mejor remuneradas.
+
+Esto muestra que especializarse en nuevas áreas puede abrir oportunidades salariales muy altas.
+
+Skills menos comunes también pagan más
+
+Herramientas como couchbase, ansible, mxnet, cassandra, vmware no son tan masivas como SQL o Excel, pero quienes las dominan pueden acceder a salarios muy superiores al promedio.
+
+El core sigue siendo Python, SQL y R
+
+Python lidera como el skill más demandado, seguido por Tableau, SQL Server, SQL y R.
+
+Esto confirma que la base de análisis sigue girando alrededor de lenguajes de programación estadística y bases de datos.
+
+Herramientas de visualización y ofimática tienen alta demanda
+
+Tableau, Power BI, Excel, PowerPoint siguen siendo fundamentales porque muchas empresas valoran la capacidad de comunicar resultados además de hacer análisis.
+
+No siempre lo más demandado es lo mejor pagado
+
+Skills como Excel y Word aparecen en la lista de demanda, pero no en la de salarios altos.
+
+Esto refleja que aunque muchas empresas las piden, no diferencian mucho el salario porque son consideradas habilidades básicas.
+
+## 4. Mejores habilidades para aprender
+### Visualizado
+from adjustText import adjust_text
+
+df_DA_skills_high_demand.plot(kind='scatter', x='skill_percent', y='median_salary')
+
+texts= []
+for i, txt in enumerate(df_DA_skills_high_demand.index):
+    texts.append(plt.text(df_DA_skills_high_demand['skill_percent'].iloc[i], df_DA_skills_high_demand['median_salary'].iloc[i], txt))
+
+adjust_text(texts, arrowprops=dict(arrowstyle='->', color='gray'))
+
+plt.xlabel('% of Data Analyst jobs')
+plt.ylabel('Median Yearly Salary')
+plt.title('Most Optimal Skills for Data Analysts in the US')
+plt.tight_layout()
+
+from matplotlib.ticker import PercentFormatter
+ax = plt.gca()
+ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, pos: f'${int(y/1000)}K'))
+ax.xaxis.set_major_formatter(PercentFormatter(decimals=0))
+
+plt.tight_layout()
+plt.show()
+
+### Resultado
+![Mejores Habilidades para un Analista de Datos basado en Salario y Demanda](3_Project\images\best_skills_for_DA.png)
+
+## Insights
+Skills con mayor demanda (más usadas en trabajos de Data Analyst)
+
+SQL aparece en casi 60% de los trabajos, siendo la habilidad más demandada del mercado, con un salario mediano de ~$91K.
+
+Excel también tiene gran presencia (40% de los trabajos), aunque su salario mediano es menor ($84K).
+
+Son habilidades “básicas pero indispensables” para conseguir un trabajo en análisis de datos.
+
+Skills con mejores salarios (arriba en el eje Y)
+
+Python lidera con un salario mediano cercano a $98K, además de estar en ~30% de los trabajos → combina buena demanda y excelente paga.
+
+Oracle también destaca en salario (~$97K), aunque con baja demanda (<10%).
+
+Tableau y R rondan los $92K–$93K, con demanda media (20–30%).
+
+Estas son las habilidades que más impulsan el crecimiento salarial.
+
+Skills con equilibrio ideal (alta demanda + buen salario)
+
+Python, SQL y Tableau forman el triángulo de oro: demandadas por muchas empresas y con salarios competitivos.
+
+Power BI y SAS también tienen un balance razonable (20% de demanda, ~$90K).
+
+Skills menos óptimas (baja paga o poca demanda)
+
+Word y PowerPoint están en el rango más bajo: relativamente presentes en algunos empleos pero con salarios medianos menores (~$81K–$86K).
+
+Son útiles para comunicar resultados, pero no diferencian en compensación.

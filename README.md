@@ -105,7 +105,7 @@ plt.show()
 
 ## Resultados
 
-[Demanda de Habilidades para Analistas de Datos](3_Project\images\demanda_habilidades_DA.png)
+![Demanda de Habilidades para Analistas de Datos](3_Project\images\demanda_habilidades_DA.png)
 
 ## Insights
 SQL domina con claridad
@@ -137,3 +137,21 @@ Tendencia general
 El gráfico muestra que las empresas siguen valorando las herramientas clásicas (SQL y Excel), pero la brecha con herramientas modernas (Python, Tableau) se está cerrando.
 
 A futuro, es posible que la relevancia de Python y Tableau siga creciendo, mientras que Excel y SAS podrían seguir perdiendo peso.
+
+
+## 3. Que tan bien pagan ciertos puestos?
+### Visualizando
+
+sns.boxplot(data=df_US_top6, x='salary_year_avg', y='job_title_short', order=job_order)
+
+plt.title('Salary Distribution in the United States')
+plt.xlabel('Yearly Salary in USD')
+plt.ylabel('')
+ax = plt.gca()
+ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda y, pos: f'${int(y/1000)}K'))
+plt.xlim(0, 600000)
+plt.show()
+
+### Resultados
+
+![Distribución de Salarios por puesto de Data](3_Project\images\distribucion de salario.png)

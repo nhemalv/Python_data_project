@@ -1,5 +1,16 @@
-# Analisis
+# Introducción
+Esto es un análisis del mercado laboral con un enfoque en el puesto de Analista de Datos en los Estados Unidos. La fuente de la data fue el curso de Luke Barousse sobre Python. A través de Pyhton, quería responder preguntas cómo: cuáles son las habilidades con más demanda, tendencias salariales y la intersección entre esas dos.
+# Preguntas
+1. Cuáles son las habilidades compartidas entre roles?
+2. Cual es la tendencia de habilidades con alta demanda para Analistas de Datos?
+3. Cómo está el salario para ciertos puestos y habilidades?
+4. Cuales con las mejores habilidades para que aprenda un Analista de Datos?
 
+# Herramientas utilizadas
+Python, matplotlib, pandas, seaborn
+
+
+# Analisis
 ## Buscando cuales son las habilidades con más demanda para los 3 roles más populares de datos
 Filtre las 3 posiciones con más puestos publicados y consegui las 5 habilidades más populares para cada uno. Esto demuestra en que habilidades se debería enfocar uno para conseguir su puesto preferido. 
 
